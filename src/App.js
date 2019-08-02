@@ -1,14 +1,9 @@
 import React from 'react';
-import logo from './logo_mercos_fundo_branco.svg';
-import './App.css';
+import Container from "./componentes/Container";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
+      <Container/>
   );
 }
 

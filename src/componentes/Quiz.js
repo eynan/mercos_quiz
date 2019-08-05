@@ -19,9 +19,9 @@ const getVisual = (perguntas, perguntaDaVez) => {
                 <div className={styles.perguntas}>
                     <label>{pergunta.pergunta}</label>
                     <button onClick={pergunta.respostas[0].correta}>{pergunta.respostas[0].resposta}</button>
-                    <button onClick={}>{pergunta.respostas[1].resposta}</button>
-                    <button onClick={}>{pergunta.respostas[2].resposta}</button>
-                    <button onClick={}>{pergunta.respostas[3].resposta}</button>
+                    <button onClick={pergunta.respostas[1].correta}>{pergunta.respostas[1].resposta}</button>
+                    <button onClick={pergunta.respostas[2].correta}>{pergunta.respostas[2].resposta}</button>
+                    <button onClick={pergunta.respostas[3].correta}>{pergunta.respostas[3].resposta}</button>
                 </div>
             </div>
         )

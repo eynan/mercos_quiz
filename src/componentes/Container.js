@@ -5,7 +5,7 @@ import Quiz from "./Quiz";
 const Container = () => {
 
     return(
-        <Quiz/>
+        <Cadastro/>
     )
 }
 

@@ -38,7 +38,7 @@ const Quiz = props => {
             return (
                 <div className={styles.container}>
                     {`Seu score total foi: ${pontos}`}
-                    <button>Reinciar</button>
+                    <button onClick={() => props.reiniciar(pontos)}>Reinciar</button>
                 </div>
             )
         }

@@ -1,0 +1,244 @@
+.select-element-wrapper {
+    position: relative;
+    height: 48px;
+    margin: 0 0 15px
+}
+
+.select-element-wrapper.multiple-select .select-element-container.is-open {
+    padding: 13px 0 48px
+}
+
+.select-element-wrapper.multiple-select .select-items-container {
+    margin: 15px 25px 0 0
+}
+
+.select-element-wrapper.multiple-select .item-container.selected .check-container {
+    background-color: #00cc62;
+    border-color: #00cc62
+}
+
+.select-element-wrapper.multiple-select .item-container.selected .check-container:before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 6px);
+    left: calc(50% - 8px);
+    width: 18px;
+    height: 13px;
+    background-image: url("/images/icon-check-white.svg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain
+}
+
+.select-element-wrapper.multiple-select .item-container.selected .select-item {
+    color: #00cc62
+}
+
+.select-element-wrapper.multiple-select .select-item {
+    padding: 0 15px 0 0
+}
+
+.select-element-wrapper:not(.multiple-select) .item-container.selected {
+    background-color: #00cc62
+}
+
+.select-element-wrapper:not(.multiple-select) .item-container.selected .select-item {
+    color: #fff
+}
+
+.select-element-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    padding: 13px 0;
+    background-color: #fff;
+    border: 2px solid #e8eaf8;
+    border-radius: 24px;
+    cursor: pointer
+}
+.select-element-container:hover {
+    border: 2px solid #00cc62;
+}
+
+.select-element-container:after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    right: 30px;
+    display: inline-block;
+    width: 14px;
+    height: 10px;
+    background-image: url("/images/arrow-down-dark-gray.svg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    -webkit-transition: all .35s ease-out;
+    -moz-transition: all .35s ease-out;
+    -o-transition: all .35s ease-out;
+    transition: all .35s ease-out
+}
+
+.select-element-container.is-open {
+    height: auto;
+    border-color: #00cc62;
+    z-index: 999
+}
+
+.select-element-container.is-open:after {
+    background-image: url("/images/arrow-down-green.svg");
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.select-element-container.is-open .select-placeholder-container {
+    overflow: visible
+}
+
+.select-element-container.is-open .select-items-container {
+    overflow-y: hidden;
+    -webkit-transition: all .35s ease-out;
+    -moz-transition: all .35s ease-out;
+    -o-transition: all .35s ease-out;
+    transition: all .35s ease-out
+}
+
+.select-element-container.is-open .select-items-container.animated {
+    overflow-y: auto
+}
+
+.select-element-container.is-open .list-actions-container {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    display: flex;
+    width: calc(100% + 4px)
+}
+
+.select-element-container .list-actions-container {
+    display: none
+}
+
+.select-element-container .list-actions-container .button {
+    flex-grow: 1;
+    width: 100%;
+    border-color: #00cc62;
+    border-radius: 0
+}
+
+.select-element-container .list-actions-container.filtering .button {
+    width: auto;
+    padding: 15px 10px 15px 15px
+}
+
+.select-element-container .list-actions-container.filtering .close-button {
+    border-radius: 0 0 24px 0;
+    border-left-width: 1.5px
+}
+
+.select-element-container .list-actions-container.filtering .clean-button {
+    border-radius: 0 0 0 24px;
+    border-right-width: 1.5px
+}
+
+.select-element-container .list-actions-container:not(.filtering) .close-button {
+    border-radius: 0 0 24px 24px
+}
+
+.select-element-container .list-actions-container:not(.filtering) .clean-button {
+    width: 0;
+    padding: 0;
+    border: none
+}
+
+.select-element-container .select-placeholder-container {
+    overflow: hidden
+}
+
+.select-element-container .select-item, .select-element-container .select-placeholder {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.286em;
+    color: #494a5e;
+    margin: 0;
+    padding: 0 58px 0 28px;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.select-element-container:focus {
+    background: white;
+    box-shadow: none;
+}
+
+.select-element-container .select-item, .select-element-container .select-placeholder .real-placeholder {
+    color: #a7aeb7;
+}
+
+.select-element-container .check-container {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    margin: 0 15px 0 30px;
+    border: 2px solid #a7aeb7;
+    border-radius: 10px 0 10px 0
+}
+
+.select-element-container .select-items-container {
+    position: relative;
+    height: 0;
+    margin: 15px 0 0;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none
+}
+
+.select-element-container .select-items-container::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 3.5px
+}
+
+.select-element-container .select-items-container::-webkit-scrollbar-thumb {
+    background: #d8d8d8;
+    border-radius: 5px
+}
+
+.select-element-container .item-container {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    overflow: hidden
+}
+
+.select-element-container .item-container:hover {
+    background-color: #f5f8fc
+}
+
+.select-element-container .item-container.selected .select-item {
+    font-weight: 600
+}
+
+.select-element-container .select-item {
+    color: #494a5e
+}
+
+*, :after, :before {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff
+}
+

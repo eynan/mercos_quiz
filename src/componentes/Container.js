@@ -4,21 +4,19 @@ import Quiz from "./Quiz";
 
 
 const Container = props => {
-    const [etapa, setEtapa] = useState('cadastro')
-    const [jogador, setJogador] = useState()
+    const [etapa, setEtapa] = useState('quiz')
+    const [pontuacao, setPontuacao] = useState(0)
 
-    function finalizarCadastro(idCadastro) {
+    function finalizarCadastro() {
         setEtapa('quiz')
-        setJogador(idCadastro)
     }
-
 
     function finalizarQuiz(pontos) {
+        setPontuacao(pontos)
         setEtapa('cadastro')
-        props.db.firestore().collection('cadastros').doc(jogador).set({pontuacao: pontos}, {merge: true});
     }
 
-    return(etapa === 'cadastro' ? <Cadastro db={props.db} finalizarCadastro={finalizarCadastro}/> : <Quiz reiniciar={finalizarQuiz}/>)
+    return(etapa === 'cadastro' ? <Cadastro db={props.db} pontos={pontuacao} finalizarCadastro={finalizarCadastro}/> : <Quiz finalizar={finalizarQuiz}/>)
 }
 
 export default Container

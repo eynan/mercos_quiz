@@ -1,24 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import Dados from '../data/Dados'
+import cx from 'classnames'
 import styles from './Quiz.module.css'
 
 
 const QUANTIDADE_DE_PERGUNTAS = 4
 
-const pegarPerguntasRandonicamente = (quantidade) => {
+const pegarPerguntasRandonicamente = quantidade => {
     const listaDePerguntasGerada = []
-    for (const x of Array(quantidade).keys()) {
-        const valorRandom = Math.random() * 10
-        listaDePerguntasGerada.push(Dados[Math.floor(valorRandom)])
-    }
+    let perguntas = [...Dados]
+
+    Array.from({length: quantidade}, () => {
+        const valorRandom = Math.floor(Math.random() * 10)
+        listaDePerguntasGerada.push(perguntas.pop(valorRandom))
+        return null
+    })
+
     return listaDePerguntasGerada
 }
 
 const Quiz = props => {
-
     const [pontos, setPontos] = useState(0);
     const [perguntas, setPerguntas] = useState([])
     const [perguntaDaVez, setPerguntaDaVez] = useState(0)
+    const [quizIniciado, setQuizIniciado] = useState(false)
+    const [exibirResposta, setExibirResposta] = useState(false)
 
     useEffect(() => {
         setPerguntas(pegarPerguntasRandonicamente(5))
@@ -28,31 +34,62 @@ const Quiz = props => {
         if (acerto) {
             setPontos(pontos + 10)
         }
+        setExibirResposta(true)
+
+        perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? props.finalizar(pontos) : setTimeout(() =>selecionarPerguntax(),5000)
+    }
+
+    function selecionarPerguntax() {
         setPerguntaDaVez(perguntaDaVez + 1)
+        setExibirResposta(false)
+    }
+
+    const gerarTelaIncial = () => (
+        <div className={styles.containerTelaInicial}>
+            <button className={styles.botaoAcao} onClick={() => setQuizIniciado(true)} >Iniciar o quiz</button>
+        </div>
+    )
+
+    function mostrarResposta(resposta){
+        if (exibirResposta){
+            return resposta ? 'respostaCorreta': 'respostaInvalida'
+        }
+        return ''
     }
 
     function gerarPerguntas(perguntas, perguntaDaVez) {
+        // console.log(REACT_APP_NOT_SECRET_CODE=abcdef npm start)
         const pergunta = perguntas[perguntaDaVez]
-
-        if(perguntaDaVez > QUANTIDADE_DE_PERGUNTAS) {
-            return (
-                <div className={styles.container}>
-                    {`Seu score total foi: ${pontos}`}
-                    <button onClick={() => props.reiniciar(pontos)}>Reinciar</button>
-                </div>
-            )
-        }
-
         if (pergunta) {
             return (
                 <div className={styles.container}>
                     <div className={styles.perguntas}>
-                        <label>{pergunta.pergunta}</label>
-                        <button onClick={() => selecionarPergunta(pergunta.respostas[0].correta)}>{pergunta.respostas[0].resposta}</button>
-                        <button onClick={() => selecionarPergunta(pergunta.respostas[1].correta)}>{pergunta.respostas[1].resposta}</button>
-                        <button onClick={() => selecionarPergunta(pergunta.respostas[2].correta)}>{pergunta.respostas[2].resposta}</button>
-                        <button onClick={() => selecionarPergunta(pergunta.respostas[3].correta)}>{pergunta.respostas[3].resposta}</button>
-                        <div style={{marginTop: '20px'}}>{`Total de pontos: ${pontos}`}</div>
+                        <div className={styles.divPergunta}>{pergunta.pergunta}</div>
+                        <div
+                            className={cx(styles.divRespostas, styles[mostrarResposta(pergunta.respostas[0].correta)])}
+                            onClick={() => selecionarPergunta(pergunta.respostas[0].correta)}
+                        >
+                            {pergunta.respostas[0].resposta}
+                        </div>
+                        <div
+                            className={cx(styles.divRespostas,  styles[mostrarResposta(pergunta.respostas[1].correta)])}
+                            onClick={() => selecionarPergunta(pergunta.respostas[1].correta)}
+                        >
+                            {pergunta.respostas[1].resposta}
+                        </div>
+                        <div
+                            className={cx(styles.divRespostas, styles[mostrarResposta(pergunta.respostas[2].correta)])}
+                            onClick={() => selecionarPergunta(pergunta.respostas[2].correta)}
+                        >
+                            {pergunta.respostas[2].resposta}
+                        </div>
+                        <div
+                            className={cx(styles.divRespostas, styles[mostrarResposta(pergunta.respostas[3].correta)])}
+                            onClick={() => selecionarPergunta(pergunta.respostas[3].correta)}
+                        >
+                            {pergunta.respostas[3].resposta}
+                        </div>
+                        <div className={styles.divQuantidadePergunta}>{`Pergunta ${perguntaDaVez+1} de ${QUANTIDADE_DE_PERGUNTAS+1}`}</div>
                     </div>
                 </div>
             )
@@ -61,7 +98,11 @@ const Quiz = props => {
         }
     }
 
-    return (gerarPerguntas(perguntas, perguntaDaVez))
+    function criarTela() {
+        return quizIniciado ? gerarPerguntas(perguntas, perguntaDaVez) : gerarTelaIncial()
+    }
+
+    return criarTela()
 }
 
 export default Quiz

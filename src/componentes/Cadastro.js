@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styles from './Cadastro.module.css'
+import Select from "./Select";
 
 const Cadastro = (props) => {
 
@@ -15,25 +16,52 @@ const Cadastro = (props) => {
 
     const enviarCadastro = () => {
         const dbCon = props.db.firestore().collection('cadastros')
-        dbCon.add(cadastro).then(retorno =>  props.finalizarCadastro(retorno.id))
+        const participante = {...cadastro, pontuacao: props.pontos}
+        dbCon.add(participante).then(retorno =>  props.finalizarCadastro())
     }
 
     return (
         <div className={styles.container}>
+            <div className={styles.score}>{`Seu score foi: ${props.pontos}`}</div>
             <div className={styles.cadastro}>
-                <label>Nome</label>
-                <input type='text' value={cadastro.nome} onChange={event => setCadastro({...cadastro, nome:event.target.value})}/>
-                <label>E-mail</label>
-                <input type='text' value={cadastro.email} onChange={event => setCadastro({...cadastro, email:event.target.value})}/>
-                <label>Telefone</label>
-                <input type='text' value={cadastro.telefone} onChange={event => setCadastro({...cadastro, telefone:event.target.value})}/>
-                <label>Com o que você trabalha?</label>
-                <input type='text' value={cadastro.trabalhaComOque} onChange={event => setCadastro({...cadastro, trabalhaComOque:event.target.value})}/>
-                <label>Você está trabalhando atualmente?</label>
-                <input type='checkbox' value={cadastro.trabalhandoAtualmente} onClick={event => setCadastro({...cadastro, trabalhandoAtualmente: !cadastro.trabalhandoAtualmente})}/>
-                <label>Aceito que a Mercos entre em contato comigo</label>
-                <input type='checkbox' value={cadastro.contatoMercos} onClick={event => setCadastro({...cadastro, contatoMercos: !cadastro.contatoMercos})}/>
-                <button onClick={() => enviarCadastro()}> Começar!</button>
+                <label className={styles.paragrafo}>Cadastre-se para participar do sorteio do Kindle!</label>
+                <label className={styles.labelCadastro}>Nome</label>
+                <input
+                    type='text'
+                    className={styles.inputCadastro}
+                    value={cadastro.nome}
+                    onChange={event => setCadastro({...cadastro, nome: event.target.value})}
+                />
+                <label className={styles.labelCadastro}>E-mail</label>
+                <input
+                    type='text'
+                    className={styles.inputCadastro}
+                    value={cadastro.email}
+                    onChange={event => setCadastro({...cadastro, email: event.target.value})}
+                />
+                <label className={styles.labelCadastro}>Telefone</label>
+                <input
+                    type='text'
+                    className={styles.inputCadastro}
+                    value={cadastro.telefone}
+                    onChange={event => setCadastro({...cadastro, telefone: event.target.value})}
+                />
+                <label className={styles.labelCadastro}>Com o que você trabalha?</label>
+                <input
+                    type='text'
+                    placeholder='Ex dev full stack...'
+                    className={styles.inputCadastro}
+                    value={cadastro.trabalhaComOque}
+                    onChange={event => setCadastro({...cadastro, trabalhaComOque: event.target.value})}
+                />
+                <label className={styles.labelCadastro}>Você está trabalhando atualmente?</label>
+                <Select
+                    items={[{data:{title: 'SIM'}}, {data:{title: 'Não'}}]}
+                    doFilter={respostas => setCadastro({...cadastro, trabalhandoAtualmente: respostas[0]})}
+                >
+                    <span className='real-placeholder'>Selecione...</span>
+                </Select>
+                <button className={styles.botaoAcao} onClick={() => enviarCadastro()}> Cadastrar!</button>
             </div>
         </div>
     )

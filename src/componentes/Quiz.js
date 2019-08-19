@@ -36,7 +36,7 @@ const Quiz = props => {
         }
         setExibirResposta(true)
 
-        perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? props.finalizar(pontos) : setTimeout(() =>selecionarPerguntax(),5000)
+        perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? props.finalizar(pontos) : setTimeout(() =>selecionarPerguntax(),1500)
     }
 
     function selecionarPerguntax() {

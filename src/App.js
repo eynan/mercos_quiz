@@ -1,14 +1,22 @@
 import React from 'react';
-import logo from './logo_mercos_fundo_branco.svg';
-import './App.css';
+import Container from "./componentes/Container";
+import firebase from 'firebase';
 
 function App() {
+  const firebaseConfig = {
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
+  }
+  firebase.initializeApp(firebaseConfig)
+  firebase.database.enableLogging(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
+      <Container db={firebase}/>
   );
 }
 

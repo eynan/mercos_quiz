@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styles from './Cadastro.module.css'
-import Select from "./Select";
 
 const Cadastro = (props) => {
 
@@ -9,8 +8,7 @@ const Cadastro = (props) => {
         email: '',
         telefone: '',
         trabalhaComOque: '',
-        trabalhandoAtualmente: false,
-        contatoMercos: false,
+        trabalhandoAtualmente: '',
         evento: 'code-con'
     })
 
@@ -49,18 +47,18 @@ const Cadastro = (props) => {
                 <label className={styles.labelCadastro}>Com o que você trabalha?</label>
                 <input
                     type='text'
-                    placeholder='Ex dev full stack...'
+                    placeholder='FullStack, FrontEnd, Mobile, DevOps...'
                     className={styles.inputCadastro}
                     value={cadastro.trabalhaComOque}
                     onChange={event => setCadastro({...cadastro, trabalhaComOque: event.target.value})}
                 />
-                <label className={styles.labelCadastro}>Você está trabalhando atualmente?</label>
-                <Select
-                    items={[{data:{title: 'SIM'}}, {data:{title: 'Não'}}]}
-                    doFilter={respostas => setCadastro({...cadastro, trabalhandoAtualmente: respostas[0]})}
-                >
-                    <span className='real-placeholder'>Selecione...</span>
-                </Select>
+                <label className={styles.labelCadastro}>Onde você trabalha hoje?</label>
+                <input
+                    type='text'
+                    className={styles.inputCadastro}
+                    value={cadastro.trabalhandoAtualmente}
+                    onChange={event => setCadastro({...cadastro, trabalhandoAtualmente: event.target.value})}
+                />
                 <button className={styles.botaoAcao} onClick={() => enviarCadastro()}> Cadastrar!</button>
             </div>
         </div>

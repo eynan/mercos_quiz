@@ -31,12 +31,13 @@ const Quiz = props => {
     }, [])
 
     function selecionarPergunta(acerto) {
+        console.log(' shu')
         if (acerto) {
             setPontos(pontos + 10)
         }
         setExibirResposta(true)
 
-        perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? props.finalizar(pontos) : setTimeout(() =>selecionarPerguntax(),1500)
+        perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? setTimeout(() => props.finalizar(pontos), 1600) : setTimeout(() =>selecionarPerguntax(), 1600)
     }
 
     function selecionarPerguntax() {
@@ -46,7 +47,7 @@ const Quiz = props => {
 
     const gerarTelaIncial = () => (
         <div className={styles.containerTelaInicial}>
-            <img src='/images/codecon.png' className={styles.imagemAstronauta}/>
+            <img src='/images/codecon.png' className={styles.imagemAstronauta} alt='Mercos Astronauta'/>
             <button className={styles.botaoAcao} onClick={() => setQuizIniciado(true)} >Iniciar o quiz</button>
         </div>
     )

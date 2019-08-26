@@ -107,21 +107,26 @@
 .respostaCorreta {
     background: #00CC62;
     color: white;
+    pointer-events:none;
+    cursor: none;
 }
 
 .respostaCorreta:hover {
     background: #00CC62;
     color: white;
     border-color: #00CC62;
+    cursor: none;
 }
 
 .respostaInvalida {
     background: #663991;
     color: white;
+    pointer-events:no-drop;
 }
 
 .respostaInvalida:hover {
     background: #663991;
     color: white;
     border-color: #663991;
+    cursor: no-drop;
 }

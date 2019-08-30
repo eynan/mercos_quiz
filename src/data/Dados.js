@@ -28,16 +28,16 @@ const Dados = [
                 correta: false
             },
             {
+                resposta: '14 horas',
+                correta: false
+            },
+            {
                 resposta: '27 horas',
                 correta: false
             },
             {
                 resposta: '33 horas',
                 correta: true
-            },
-            {
-                resposta: '14 horas',
-                correta: false
             }
         ]
     },
@@ -74,12 +74,12 @@ const Dados = [
                 correta: false
             },
             {
-                resposta: '30%',
-                correta: true
-            },
-            {
                 resposta: '20%',
                 correta: false
+            },
+            {
+                resposta: '30%',
+                correta: true
             }
         ]
     },
@@ -213,16 +213,16 @@ const Dados = [
         pergunta: 'Quantas pessoas o time de tecnologia da Mercos possui?',
         respostas: [
             {
-                resposta: '31',
-                correta: true
+                resposta: '16',
+                correta: false
             },
             {
                 resposta: '24',
                 correta: false
             },
             {
-                resposta: '16',
-                correta: false
+                resposta: '31',
+                correta: true
             },
             {
                 resposta: '42',

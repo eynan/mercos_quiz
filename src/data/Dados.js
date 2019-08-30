@@ -3,7 +3,7 @@ const Dados = [
         pergunta: 'Quais são os valores da Mercos?',
         respostas: [
             {
-                resposta: 'Autores da nossa história, coragem para aprender, dignos de confiança, práticos, sócios do cliente, desafio sempre, descontração quase sempre.',
+                resposta: 'Autores da nossa história, coragem para aprender, dignos de confiança, práticos, sócios do cliente, desafio sempre e descontração quase sempre.',
                 correta: true
             },
             {
@@ -348,11 +348,11 @@ const Dados = [
             },
             {
                 resposta: 'Marcas e mercados',
-                correta: false
+                correta: true
             },
             {
                 resposta: 'Movimentar mercados',
-                correta: true
+                correta: false
             }
         ]
     },

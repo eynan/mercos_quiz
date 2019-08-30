@@ -40,11 +40,10 @@ const Cadastro = (props) => {
         for (const key in cadastro) {
             let variavelDeCadastro = cadastro[key]
             variavelDeCadastro = typeof(variavelDeCadastro)  == 'string' ? variavelDeCadastro.trim() : variavelDeCadastro
-            if(!variavelDeCadastro){
+            if(!variavelDeCadastro && typeof(variavelDeCadastro)  == 'string'){
                 cadastroErroAtual[key] = true
             }
         }
-
         if (Object.values(cadastroErroAtual).indexOf(true) > -1) {
             setCadastroErro(cadastroErroAtual)
         }else {
@@ -111,7 +110,7 @@ const Cadastro = (props) => {
                     <Toggle
                         defaultChecked={cadastro.aceitaContato}
                         icons={false}
-                        onChange={() => setCadastro({...cadastro, aceitaContato: !cadastro.aceitaContato})} 
+                        onChange={() => atualizaCadastroELimpaInputComErro({...cadastro, aceitaContato: !cadastro.aceitaContato}, 'aceitaContato')}
                     />
                 </label>
                 

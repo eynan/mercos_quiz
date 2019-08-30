@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 10px;
 }
 
 .cadastro {
@@ -116,4 +117,8 @@
     margin-left: -20px;
     margin-top: 10px;
     justify-content: center;
+}
+
+.erro {
+    border-color: red;
 }

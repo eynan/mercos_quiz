@@ -4,15 +4,15 @@ import cx from 'classnames'
 import styles from './Quiz.module.css'
 
 
-const QUANTIDADE_DE_PERGUNTAS = 4
+const QUANTIDADE_DE_PERGUNTAS = 6
 
 const pegarPerguntasRandonicamente = quantidade => {
     const listaDePerguntasGerada = []
     let perguntas = [...Dados]
-
     Array.from({length: quantidade}, () => {
-        const valorRandom = Math.floor(Math.random() * 10)
-        listaDePerguntasGerada.push(perguntas.pop(valorRandom))
+        const valorRandom = Math.floor(Math.random() * perguntas.length)
+        listaDePerguntasGerada.push(perguntas[valorRandom])
+        perguntas.splice(valorRandom, 1)
         return null
     })
 
@@ -27,7 +27,7 @@ const Quiz = props => {
     const [exibirResposta, setExibirResposta] = useState(false)
 
     useEffect(() => {
-        setPerguntas(pegarPerguntasRandonicamente(5))
+        setPerguntas(pegarPerguntasRandonicamente(QUANTIDADE_DE_PERGUNTAS + 1))
     }, [])
 
     function selecionarPergunta(acerto) {
@@ -60,12 +60,12 @@ const Quiz = props => {
     }
 
     function gerarPerguntas(perguntas, perguntaDaVez) {
-        // console.log(REACT_APP_NOT_SECRET_CODE=abcdef npm start)
         const pergunta = perguntas[perguntaDaVez]
         if (pergunta) {
             return (
                 <div className={styles.container}>
                     <div className={styles.perguntas}>
+                    <img src='/images/MercosQuizDefault.png' className={styles.mercosLogoQuiz} alt='Mercos logo'/>
                         <div className={styles.divPergunta}>{pergunta.pergunta}</div>
                         <div
                             className={cx(styles.divRespostas, styles[mostrarResposta(pergunta.respostas[0].correta)])}

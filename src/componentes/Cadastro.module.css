@@ -117,3 +117,7 @@
     margin-top: 10px;
     justify-content: center;
 }
+
+.erro {
+    border-color: red;
+}

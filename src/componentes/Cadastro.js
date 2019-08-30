@@ -3,6 +3,7 @@ import styles from './Cadastro.module.css'
 import Select from './Select'
 import Toggle from 'react-toggle'
 import "react-toggle/style.css"
+import cx from 'classnames'
 
 const Cadastro = (props) => {
 
@@ -17,10 +18,41 @@ const Cadastro = (props) => {
         aceitaContato: true
     })
 
+    const [cadastroErro, setCadastroErro] = useState({
+        nome: false,
+        email: false,
+        telefone: false,
+        trabalhaComOque: false,
+        trabalhandoAtualmente: false,
+        conheceMercos: false
+    })
+
     const enviarCadastro = () => {
         const dbCon = props.db.firestore().collection('cadastros')
         const participante = {...cadastro, pontuacao: props.pontos}
         dbCon.add(participante).then(retorno =>  props.finalizarCadastro())
+    }
+
+    const validarCadastro = () => {
+        let cadastroErroAtual = {...cadastroErro}
+        for (const key in cadastro) {
+            let variavelDeCadastro = cadastro[key]
+            variavelDeCadastro = typeof(variavelDeCadastro)  == 'string' ? variavelDeCadastro.trim() : variavelDeCadastro
+            if(!variavelDeCadastro){
+                cadastroErroAtual[key] = true
+            }
+        }
+
+        if (Object.values(cadastroErroAtual).indexOf(true) > -1) {
+            setCadastroErro(cadastroErroAtual)
+        }else {
+             enviarCadastro()
+        }
+    }
+
+    const atualizaCadastroELimpaInputComErro = (objeto, campo) => {
+        setCadastro(objeto)
+        setCadastroErro({...cadastroErro, [campo]: false})
     }
 
     return (
@@ -31,43 +63,44 @@ const Cadastro = (props) => {
                 <label className={styles.labelCadastro}>Nome</label>
                 <input
                     type='text'
-                    className={styles.inputCadastro}
+                    className={cx(styles.inputCadastro, cadastroErro.nome ? styles.erro: '')}
                     value={cadastro.nome}
-                    onChange={event => setCadastro({...cadastro, nome: event.target.value})}
+                    onChange={event => atualizaCadastroELimpaInputComErro({...cadastro, nome: event.target.value}, 'nome')}
                 />
                 <label className={styles.labelCadastro}>E-mail</label>
                 <input
                     type='text'
-                    className={styles.inputCadastro}
+                    className={cx(styles.inputCadastro, cadastroErro.email ? styles.erro: '')}
                     value={cadastro.email}
-                    onChange={event => setCadastro({...cadastro, email: event.target.value})}
+                    onChange={event => atualizaCadastroELimpaInputComErro({...cadastro, email: event.target.value}, 'email')}
                 />
                 <label className={styles.labelCadastro}>Telefone</label>
                 <input
                     type='text'
-                    className={styles.inputCadastro}
+                    className={cx(styles.inputCadastro, cadastroErro.telefone ? styles.erro: '')}
                     value={cadastro.telefone}
-                    onChange={event => setCadastro({...cadastro, telefone: event.target.value})}
+                    onChange={event => atualizaCadastroELimpaInputComErro({...cadastro, telefone: event.target.value}, 'telefone')}
                 />
                 <label className={styles.labelCadastro}>Com o que você está trabalhando?</label>
                 <input
                     type='text'
                     placeholder='FullStack, FrontEnd, Mobile, DevOps...'
-                    className={styles.inputCadastro}
+                    className={cx(styles.inputCadastro, cadastroErro.trabalhaComOque ? styles.erro: '')}
                     value={cadastro.trabalhaComOque}
-                    onChange={event => setCadastro({...cadastro, trabalhaComOque: event.target.value})}
+                    onChange={event => atualizaCadastroELimpaInputComErro({...cadastro, trabalhaComOque: event.target.value}, 'trabalhaComOque')}
                 />
                 <label className={styles.labelCadastro}>Em qual empresa trabalha?</label>
                 <input
                     type='text'
-                    className={styles.inputCadastro}
+                    className={cx(styles.inputCadastro, cadastroErro.trabalhandoAtualmente ? styles.erro: '')}
                     value={cadastro.trabalhandoAtualmente}
-                    onChange={event => setCadastro({...cadastro, trabalhandoAtualmente: event.target.value})}
+                    onChange={event => atualizaCadastroELimpaInputComErro({...cadastro, trabalhandoAtualmente: event.target.value}, 'trabalhandoAtualmente')}
                 />
                 <label className={styles.labelCadastro}>Já conhecia a Mercos?</label>
                 <Select
                     items={[{data:{title: 'SIM'}}, {data:{title: 'Não'}}]}
-                    doFilter={respostas => setCadastro({...cadastro, conheceMercos: respostas[0]})}
+                    doFilter={respostas => atualizaCadastroELimpaInputComErro({...cadastro, conheceMercos: respostas[0]}, 'conheceMercos')}
+                    erro={cadastroErro.conheceMercos}
                 >
                     <span className='real-placeholder'>Selecione...</span>
                 </Select>
@@ -80,7 +113,7 @@ const Cadastro = (props) => {
                     />
                 </label>
                 
-                <button className={styles.botaoAcao} onClick={() => enviarCadastro()}> Cadastrar!</button>
+                <button className={styles.botaoAcao} onClick={() => validarCadastro()}> Cadastrar!</button>
             </div>
         </div>
     )

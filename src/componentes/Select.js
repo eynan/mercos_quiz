@@ -122,8 +122,8 @@ class Select extends Component {
                 ref={this.setWrapperRef}
                 onClick={() => this.selectToggle()}
             >
-                <div tabIndex="0" className={cx('select-element-container', this.state.isOpen && 'is-open')}>
-                    <div className='select-placeholder-container'>
+                <div tabIndex="0" className={cx('select-element-container', this.state.isOpen && 'is-open', this.props.erro ? 'erro': '')}>
+                    <div className={cx('select-placeholder-container')}>
                         <p className='select-placeholder'>
                             {this.state.selectedTitles && this.state.selectedQuantity === 1 ?
                                 this.state.selectedTitles[0]

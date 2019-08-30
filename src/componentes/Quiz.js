@@ -31,16 +31,18 @@ const Quiz = props => {
     }, [])
 
     function selecionarPergunta(acerto) {
-        console.log(' shu')
+        let pontuacaoTemporaria  = pontos
         if (acerto) {
-            setPontos(pontos + 10)
+            pontuacaoTemporaria += 10
+            setPontos(pontuacaoTemporaria)
         }
+        console.log('pontos:', pontos)
         setExibirResposta(true)
 
-        perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? setTimeout(() => props.finalizar(pontos), 1600) : setTimeout(() =>selecionarPerguntax(), 1600)
+        perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? setTimeout(() => props.finalizar(pontuacaoTemporaria), 1600) : setTimeout(() => selecionarPerguntas(), 1600)
     }
 
-    function selecionarPerguntax() {
+    function selecionarPerguntas() {
         setPerguntaDaVez(perguntaDaVez + 1)
         setExibirResposta(false)
     }

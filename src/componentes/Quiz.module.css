@@ -143,6 +143,5 @@
 .mercosLogoQuizInicial {
     width: 100%;
     max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto 0 auto;
 }

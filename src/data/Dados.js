@@ -46,7 +46,7 @@ const Dados = [
         respostas: [
             {
                 resposta: 'Pebolim',
-                correta: true
+                correta: false
             },
             {
                 resposta: 'Vídeo Game',
@@ -250,7 +250,133 @@ const Dados = [
                 correta: true
             }
         ]
-    }
+    },
+    {
+        pergunta: 'Qual sistema operacional utilizamos para trabalhar?',
+        respostas: [
+            {
+                resposta: 'Windows',
+                correta: false
+            },
+            {
+                resposta: 'Linux',
+                correta: false
+            },
+            {
+                resposta: 'Mac',
+                correta: true
+            },
+            {
+                resposta: 'Outros',
+                correta: false
+            }
+        ]
+    },
+    {
+        pergunta: 'Qual o nosso propósito?',
+        respostas: [
+            {
+                resposta: 'Revolucionar o mundo das vendas',
+                correta: false
+            },
+            {
+                resposta: 'Profissionalizar os representantes comerciais',
+                correta: false
+            },
+            {
+                resposta: 'Movimentar a economia do Brasil',
+                correta: true
+            },
+            {
+                resposta: 'Simplificar e melhorar o trabalho dos nossos clientes',
+                correta: false
+            }
+        ]
+    },
+    {
+        pergunta: 'Qual o prêmio mais recente relacionado a cultura que a Mercos recebeu?',
+        respostas: [
+            {
+                resposta: 'Love mondays',
+                correta: false
+            },
+            {
+                resposta: 'Great Place to Work',
+                correta: true
+            },
+            {
+                resposta: 'Capitalismo Consciente',
+                correta: false
+            },
+            {
+                resposta: 'Top startups linkedIn',
+                correta: false
+            }
+        ]
+    },
+    {
+        pergunta: 'Qual o mais novo benefício que temos na Mercos?',
+        respostas: [
+            {
+                resposta: 'Vale Massagem',
+                correta: false
+            },
+            {
+                resposta: 'Vale combustível',
+                correta: false
+            },
+            {
+                resposta: 'Plano odontológico',
+                correta: false
+            },
+            {
+                resposta: 'Stock Options',
+                correta: true
+            }
+        ]
+    },
+    {
+        pergunta: 'Qual a combinação de palavras do nome Mercos?',
+        respostas: [
+            {
+                resposta: 'Mercados e cosméticos',
+                correta: false
+            },
+            {
+                resposta: 'Representantes e Mercados',
+                correta: false
+            },
+            {
+                resposta: 'Marcas e mercados',
+                correta: false
+            },
+            {
+                resposta: 'Movimentar mercados',
+                correta: true
+            }
+        ]
+    },
+    {
+        pergunta: 'Qual foi o crescimento em faturamento da Mercos no último ano?',
+        respostas: [
+            {
+                resposta: '30%',
+                correta: false
+            },
+            {
+                resposta: '40%',
+                correta: false
+            },
+            {
+                resposta: '60%',
+                correta: true
+            },
+            {
+                resposta: '70%',
+                correta: false
+            }
+        ]
+    },
 ]
 
 export default Dados

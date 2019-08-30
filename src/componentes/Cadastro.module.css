@@ -17,7 +17,7 @@
 }
 
 .labelCadastro {
-    color: #a7aeb7;
+    color: #818891;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
@@ -33,13 +33,13 @@
     color: #494a5e;
     margin: 0 0 20px;
     padding: 13px 28px;
-    border: 2px solid #e8eaf8;
+    border: 2px solid #d7d9e7;
     border-radius: 40px;
     transition: all .2s ease;
 }
 
 .inputCadastro::placeholder {
-  color: #a7aeb7;
+  color: #a0a7b0;
   opacity: 1;
 }
 

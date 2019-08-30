@@ -47,6 +47,7 @@ const Quiz = props => {
 
     const gerarTelaIncial = () => (
         <div className={styles.containerTelaInicial}>
+            <img src='/images/MercosQuizBranca.png' className={styles.mercosLogoQuizInicial} alt='Mercos logo'/>
             <img src='/images/codecon.png' className={styles.imagemAstronauta} alt='Mercos Astronauta'/>
             <button className={styles.botaoAcao} onClick={() => setQuizIniciado(true)} >Iniciar o quiz</button>
         </div>

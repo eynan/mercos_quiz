@@ -36,7 +36,7 @@ const Quiz = props => {
             pontuacaoTemporaria += 10
             setPontos(pontuacaoTemporaria)
         }
-        console.log('pontos:', pontos)
+
         setExibirResposta(true)
 
         perguntaDaVez === QUANTIDADE_DE_PERGUNTAS ? setTimeout(() => props.finalizar(pontuacaoTemporaria), 1600) : setTimeout(() => selecionarPerguntas(), 1600)

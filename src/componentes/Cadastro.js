@@ -29,7 +29,9 @@ const Cadastro = (props) => {
 
     const enviarCadastro = () => {
         const dbCon = props.db.firestore().collection('cadastros')
-        const participante = {...cadastro, pontuacao: props.pontos}
+        const data = new Date()
+        const dataFormatada = `${data.getDay()}/${data.getMonth()+1}/${data.getFullYear()} - ${data.getHours()} : ${data.getMinutes()} : ${data.getSeconds()}`
+        const participante = {...cadastro, pontuacao: props.pontos, data: dataFormatada}
         dbCon.add(participante).then(retorno =>  props.finalizarCadastro())
     }
 

@@ -4,7 +4,7 @@ import cx from 'classnames'
 import styles from './Quiz.module.css'
 
 
-const QUANTIDADE_DE_PERGUNTAS = 6
+const QUANTIDADE_DE_PERGUNTAS = 9
 
 const pegarPerguntasRandonicamente = quantidade => {
     const listaDePerguntasGerada = []
